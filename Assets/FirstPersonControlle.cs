@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class FirstPersonControlle : MonoBehaviour
 {
     [Range(10f,100f)] 
@@ -12,7 +13,6 @@ public class FirstPersonControlle : MonoBehaviour
     float mouseY;
     Quaternion deltaRotation;
     Vector3 deltaPosition;
-    
     Rigidbody rbody;
 
     void GetInputs(){
@@ -38,7 +38,7 @@ public class FirstPersonControlle : MonoBehaviour
     private void FixedUpdate(){
     deltaRotation = Quaternion.Euler(Vector3.up * mouseX * Time.deltaTime);
     rbody.MoveRotation(rbody.rotation * deltaRotation);
-   
+    
     }
     
 }
