@@ -109,6 +109,20 @@ namespace DefaultNamespace
             }
         }
 
+        public static Settings LoadSettingsFromAndroid()
+        {
+            var settings = Resources.Load<TextAsset>("settings");
+            if (settings != null)
+                return JsonUtility.FromJson<Settings>(settings.ToString());
+            else
+            {
+                Debug.Log("Zeile 119 it creates Default");
+                return createDefault();
+            }
+      
+        }
+        
+
         private Settings()
         {
             // no public constructor allowed
@@ -143,6 +157,8 @@ namespace DefaultNamespace
         /// </summary>
         public void StoreSettings()
         {
+            
+            
             if (!File.Exists(getPath()))
             {
                 string json = JsonUtility.ToJson(this, true);
