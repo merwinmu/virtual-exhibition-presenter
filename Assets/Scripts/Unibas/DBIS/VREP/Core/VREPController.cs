@@ -40,7 +40,10 @@ namespace Unibas.DBIS.VREP
             if (Application.platform == RuntimePlatform.Android)
             {
                 Settings = Settings.LoadSettingsFromAndroid();
-                Debug.Log("zeile: 38 ");
+                Settings.VREMAddress = android_settings.VREMAddress;  // PRETTY LAME I KNOW
+                Settings.exhibitionIds = android_settings.exhibitionIds;  // PRETTY LAME I KNOW
+                Debug.Log("zeile: 38 " + Settings.VREMAddress + "exhi "+ Settings.exhibitionIds[0]);
+                
             }
             Debug.Log("bigshaq: Zeile 48 " + Settings.VREMAddress);
 
@@ -77,9 +80,13 @@ namespace Unibas.DBIS.VREP
             if (Settings == null)
             {
                 Settings = Settings.LoadSettings();
+                Settings.VREMAddress = android_settings.VREMAddress;// PRETTY LAME I KNOW
+                Settings.exhibitionIds = android_settings.exhibitionIds; // PRETTY LAME I KNOW
                 if (Application.platform == RuntimePlatform.Android)
                 {
                     Settings = Settings.LoadSettingsFromAndroid();
+                     Settings.VREMAddress = android_settings.VREMAddress;// PRETTY LAME I KNOW
+                     Settings.exhibitionIds = android_settings.exhibitionIds; // PRETTY LAME I KNOW
                     Debug.Log("Zeile 81: Done");
                 }
                 if (Settings == null)
