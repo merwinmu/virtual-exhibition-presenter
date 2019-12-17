@@ -166,6 +166,7 @@ namespace Unibas.DBIS.VREP
             _exhibitionManager.GenerateExhibition();
             //_buildingManager.Create(ex);
             
+            ShopScrollList.setExhibition(ex);
             
             //_buildingManager.BuildRoom(ex.rooms[0]);
 /*
