@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 
 public class Swiper : MonoBehaviour
 {
@@ -27,6 +29,8 @@ public class Swiper : MonoBehaviour
     {
         foreach (Touch touch in Input.touches)
         {
+          
+            
             if (touch.phase == TouchPhase.Began)
             {
                 initTouch = touch;

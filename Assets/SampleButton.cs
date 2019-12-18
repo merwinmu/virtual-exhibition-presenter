@@ -10,7 +10,7 @@ public class SampleButton : MonoBehaviour {
 
     private float OFFSET_X = 12;
     private float CONSTANT_Z = 1.8f;
-    private float CONSTANT_Y = 0.11f;
+    private float CONSTANT_Y = 1.3f;
     
     // public Image iconImage;
 

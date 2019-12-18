@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class gyroControl : MonoBehaviour{
 
@@ -53,9 +54,9 @@ public class gyroControl : MonoBehaviour{
     // Update is called once per frame
     void Update()
     {
-        if (gyroEnabled)
+        if (!gyroEnabled)
         {
-          //  transform.localRotation = gyro.attitude * rot;
+           transform.localRotation = gyro.attitude * rot;
         }
         else
         {
@@ -67,6 +68,13 @@ public class gyroControl : MonoBehaviour{
     {
         foreach (Touch touch in Input.touches)
         {
+            int pointerID = touch.fingerId;
+
+            if (EventSystem.current.IsPointerOverGameObject(pointerID))
+            {
+                return;
+            }
+            
             if (touch.phase == TouchPhase.Began)
             {
                 initTouch = touch;
