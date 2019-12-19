@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class gyroControl : MonoBehaviour{
-
+public class gyroControl : MonoBehaviour
+{
+    private static bool InteractionButton;
     private bool gyroEnabled;
     private Gyroscope gyro;
 
@@ -34,6 +35,7 @@ public class gyroControl : MonoBehaviour{
         cameraContainer.transform.position = transform.position;
         transform.SetParent(cameraContainer.transform);
         gyroEnabled = EnableGyro();
+        InteractionButton = false;
     }
 
     private bool EnableGyro()
@@ -50,17 +52,26 @@ public class gyroControl : MonoBehaviour{
         return false;
         
     }
+    
 
     // Update is called once per frame
     void Update()
     {
-        if (!gyroEnabled)
+        if (!InteractionButton)
         {
-           transform.localRotation = gyro.attitude * rot;
+            swiper();
         }
         else
         {
-            swiper();
+            if (gyroEnabled)
+            {
+                transform.localRotation = gyro.attitude * rot;
+            }
+            else
+            {
+                ShowToast("No Gyrosope detected");
+                InteractionButton = false;
+            }
         }
     }
 
@@ -93,6 +104,33 @@ public class gyroControl : MonoBehaviour{
             {
                 initTouch = new Touch();
             }
+        }
+    }
+
+    public static bool GetInteractionButton()
+    {
+        return InteractionButton;
+    }
+
+    public static void SetInteractionButton(bool flag)
+    {
+        InteractionButton = flag;
+    }
+    
+    
+    private void ShowToast(string message)
+    {
+        AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject unityActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+
+        if (unityActivity != null)
+        {
+            AndroidJavaClass toastClass = new AndroidJavaClass("android.widget.Toast");
+            unityActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
+            {
+                AndroidJavaObject toastObject = toastClass.CallStatic<AndroidJavaObject>("makeText", unityActivity, message, 0);
+                toastObject.Call("show");
+            }));
         }
     }
 }
