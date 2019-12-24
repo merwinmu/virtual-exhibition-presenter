@@ -11,3 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Exhibition.unity
     guid: 5117cde27c131d448a6ab2c70df7ecae
+  m_configObjects: {}
