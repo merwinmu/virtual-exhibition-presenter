@@ -17,7 +17,8 @@ public class ControlButton : MonoBehaviour
         if (!InteractionButton)
         {
             gyroControl.SetInteractionButton(true);
-            T_Text.text = "GYRO MODE";
+            T_Text.text = "GM";
+            T_Text.transform.position = new Vector3(195, 1260, 0);
         }
         else
         {

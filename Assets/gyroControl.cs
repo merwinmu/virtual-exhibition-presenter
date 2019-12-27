@@ -97,6 +97,7 @@ public class gyroControl : MonoBehaviour
                 float deltaY = initTouch.position.y - touch.position.y;
                 rotX -= deltaY * Time.deltaTime * rotSpeed * dir;
                 rotY += deltaX * Time.deltaTime * rotSpeed * dir;
+                rotX = Mathf.Clamp(rotX, -90f, 60f);
                 transform.eulerAngles = new Vector3(rotX,rotY,0f);
 
             }

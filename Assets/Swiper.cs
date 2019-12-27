@@ -42,6 +42,7 @@ public class Swiper : MonoBehaviour
                 float deltaY = initTouch.position.y - touch.position.y;
                 rotX -= deltaY * Time.deltaTime * rotSpeed * dir;
                 rotY += deltaX * Time.deltaTime * rotSpeed * dir;
+                
                 transform.eulerAngles = new Vector3(rotX,rotY,0f);
 
             }
