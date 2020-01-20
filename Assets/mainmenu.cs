@@ -40,6 +40,7 @@ public class mainmenu : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+
     {
         TextAsset json_setting = Resources.Load<TextAsset>("settings");
         As = android_settings.CreateFromJSON(json_setting.text);
@@ -55,6 +56,7 @@ public class mainmenu : MonoBehaviour
 
 [System.Serializable]
 public class android_settings
+
 {
     public bool StartInLobby;
     public static string VREMAddress;

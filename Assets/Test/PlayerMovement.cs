@@ -16,8 +16,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = SimpleInput.GetAxis("Horizontal");
-        float z = SimpleInput.GetAxis("Vertical");
+       // float x = SimpleInput.GetAxis("Horizontal");
+      //float z = SimpleInput.GetAxis("Vertical");
+
+      float x = merwintouch.direction.x;
+      float z = merwintouch.direction.z;
         
 
         Vector3 move = transform.right * x + transform.forward * z;
