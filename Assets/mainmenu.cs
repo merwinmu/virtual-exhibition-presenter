@@ -32,6 +32,7 @@ public class mainmenu : MonoBehaviour
         {
             android_settings.VREMAddress = ipText; //PRETTY lAME AS WELL
             android_settings.exhibitionIds[0] = exText;//PRETTY lAME AS WELL
+            
         }
         Debug.Log(As.SaveToString());
 
