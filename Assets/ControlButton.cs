@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ControlButton : MonoBehaviour {
@@ -42,9 +43,10 @@ public class ControlButton : MonoBehaviour {
         }
     }
 
+    
     public void YourFunction()
     {
-        if (T_Text.text == "TM")
+        if (InteractionButton )
         {
             StartCoroutine(RemoveAfterSeconds(3, InfoWindow));
         }

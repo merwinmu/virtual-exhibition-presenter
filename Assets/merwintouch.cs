@@ -10,6 +10,7 @@ public class merwintouch : MonoBehaviour,IDragHandler,IPointerUpHandler,IPointer
     [Header("Logic")] private Image joystick;
     private Image container;
     public static Vector3 direction;
+    public GameObject InfoWindow;
 
     public Vector3 Direction
     {
@@ -22,6 +23,7 @@ public class merwintouch : MonoBehaviour,IDragHandler,IPointerUpHandler,IPointer
         var imgs = GetComponentsInChildren<Image>();
         container = imgs[0];
         joystick = imgs[1];
+        StartCoroutine(RemoveAfterSeconds(3, InfoWindow));
     }
 
     // Update is called once per frame
@@ -64,5 +66,12 @@ public class merwintouch : MonoBehaviour,IDragHandler,IPointerUpHandler,IPointer
     public void OnPointerDown(PointerEventData eventData)
     {
         OnDrag(eventData);
+    }
+    
+    IEnumerator RemoveAfterSeconds(int seconds, GameObject obj)
+    {
+        obj.gameObject.SetActive(true);
+        yield return new WaitForSeconds(seconds);
+        obj.SetActive(false);
     }
 }
