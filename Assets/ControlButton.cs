@@ -30,7 +30,7 @@ public class ControlButton : MonoBehaviour {
         {
             gyroControl.SetInteractionButton(true);
             T_Text.text = "GM";
-            T_Text.transform.position = new Vector3(1813, 1122, 0);
+            T_Text.transform.position = new Vector3(1998, 1056, 0);
             T_Button.image.overrideSprite = first;
 
         }
@@ -39,7 +39,7 @@ public class ControlButton : MonoBehaviour {
             gyroControl.SetInteractionButton(false);
             T_Text.text = "TM";
             T_Button.image.overrideSprite = second;
-            T_Text.transform.position = new Vector3(1736, 1122, 0);
+            T_Text.transform.position = new Vector3(1919, 1056, 0);
         }
     }
 
