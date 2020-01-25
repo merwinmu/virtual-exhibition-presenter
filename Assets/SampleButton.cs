@@ -35,6 +35,8 @@ public class SampleButton : MonoBehaviour
         this.id = id;
         CalculateTeleportPos(pos);
         roomEntryPoints.Add(new roomTeleportationPos(id,entry));
+        PlayerMovement.roomID = id;
+
     }
 
     public void CalculateTeleportPos(Vector3 position)
@@ -43,15 +45,17 @@ public class SampleButton : MonoBehaviour
         entry.x = position.x * OFFSET_X;
         entry.z = CONSTANT_Z;
         entry.y = CONSTANT_Y;
-        
+        lastPosition = entry;
     }
 
     public void HandleClick()
     {
         Debug.Log(entry.ToString());
-        PlayerMovement.Teleport(roomEntryPoints[this.id].currentPos);
-        PlayerMovement.roomID = this.id;
+        PlayerMovement.Teleport(lastPosition);
+        PlayerMovement.roomID = id;
     }
+    
+     
 
   
 }

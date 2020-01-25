@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class merwintouch : MonoBehaviour,IDragHandler,IPointerUpHandler,IPointerDownHandler
+public class JoyStickScript : MonoBehaviour,IDragHandler,IPointerUpHandler,IPointerDownHandler
 {
     [Header("Tweaks")] [SerializeField] private float joystickVisualDistance = 50;
     [Header("Logic")] private Image joystick;

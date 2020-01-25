@@ -7,7 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public static int roomID;
     public static CharacterController control;
- 
+    float x;
+    float z;
+    private Vector3 move;
 
     public float speed = 5.0f;
     // Start is called before the first frame update
@@ -19,8 +21,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x;
-        float z;
+        
 
         if (Application.platform != RuntimePlatform.Android)
         {
@@ -30,19 +31,16 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-             x = merwintouch.direction.x;
-             z = merwintouch.direction.z;
+             x = JoyStickScript.direction.x;
+             z = JoyStickScript.direction.z;
         }
         
-        Vector3 move = transform.right * x + transform.forward * z;
+        move = transform.right * x + transform.forward * z;
         move.y = 0;
         control.Move(move * speed * Time.deltaTime);
-        Debug.Log("This show the vector of move "+move);
+        Debug.Log("THIS IS LOG "+roomID);
 
-        SampleButton.roomEntryPoints[roomID].currentPos = control.transform.position;
-        Debug.Log("This shows the vector of room "+roomID+" and vector from control "+control.transform.position);
-
-       // Debug.Log(SampleButton.roomEntryPoints[roomID].currentPos+" "+ roomID);
+       // SampleButton.roomEntryPoints[roomID].currentPos = control.transform.position;
     }
 
     public static void Teleport(Vector3 pos)

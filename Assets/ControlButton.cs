@@ -22,13 +22,13 @@ public class ControlButton : MonoBehaviour {
     public void OnClickInteractionButton()
     {
         
-        InteractionButton = gyroControl.GetInteractionButton();
+        InteractionButton = InteractionControlScript.GetInteractionButton();
         T_Button = GetComponentInChildren<Button>();
         T_Text = T_Button.GetComponentInChildren<Text>();
 
         if (!InteractionButton)
         {
-            gyroControl.SetInteractionButton(true);
+            InteractionControlScript.SetInteractionButton(true);
             T_Text.text = "GM";
             T_Text.transform.position = new Vector3(1998, 1056, 0);
             T_Button.image.overrideSprite = first;
@@ -36,7 +36,7 @@ public class ControlButton : MonoBehaviour {
         }
         else
         {
-            gyroControl.SetInteractionButton(false);
+            InteractionControlScript.SetInteractionButton(false);
             T_Text.text = "TM";
             T_Button.image.overrideSprite = second;
             T_Text.transform.position = new Vector3(1919, 1056, 0);
