@@ -111,6 +111,41 @@ namespace DefaultNamespace
             }
         }
 
+
+        public static Settings LoadSettingsFromWindowsAndLinux()
+        {
+            string dataAsJson = "";
+            string filePath = Application.dataPath + "/";
+            string completePath = Path.Combine(filePath, "settings.json");
+            if (File.Exists(completePath))
+            {
+                string json = File.ReadAllText(filePath);
+                return JsonUtility.FromJson<Settings>(json);
+            }
+            else
+            {
+                return createDefault();
+            }
+
+        }
+
+        public static Settings LoadSettingsFromMac()
+        {
+            string dataAsJson = "";
+            string filePath = Application.dataPath + "/Resources/Data/StreamingAssets";
+            string completePath = Path.Combine(filePath, "settings.json");
+            if (File.Exists(completePath))
+            {
+                string json = File.ReadAllText(filePath);
+                return JsonUtility.FromJson<Settings>(json);
+            }
+            else
+            {
+                return createDefault();
+            }
+
+        }
+
         public static Settings LoadSettingsFromAndroid()
         {
             string dataAsJson ="";

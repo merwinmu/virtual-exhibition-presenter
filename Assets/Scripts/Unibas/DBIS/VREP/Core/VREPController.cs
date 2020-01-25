@@ -27,6 +27,7 @@ namespace Unibas.DBIS.VREP
 
         private void Awake()
         {
+            Debug.Log(Application.dataPath );
 
             if (Application.isEditor)
             {
@@ -46,6 +47,28 @@ namespace Unibas.DBIS.VREP
                 }
                
                 
+            }
+            
+            if (Application.platform == RuntimePlatform.WindowsPlayer)
+            {
+                    Settings = Settings.LoadSettingsFromWindowsAndLinux();
+                if (!mainmenu.exText.Equals("") && !mainmenu.ipText.Equals(""))
+                {
+                    Settings.VREMAddress = mainmenu.ipText;
+                    Settings.exhibitionIds[0] = mainmenu.exText;
+                }
+               
+                
+            }
+            
+            if (Application.platform == RuntimePlatform.OSXPlayer)
+            {
+                Settings = Settings.LoadSettingsFromAndroid();
+                if (!mainmenu.exText.Equals("") && !mainmenu.ipText.Equals(""))
+                {
+                    Settings.VREMAddress = mainmenu.ipText;
+                    Settings.exhibitionIds[0] = mainmenu.exText;
+                }
             }
 
 
