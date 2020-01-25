@@ -20,10 +20,19 @@ public class merwintouch : MonoBehaviour,IDragHandler,IPointerUpHandler,IPointer
     // Start is called before the first frame update
     void Start()
     {
-        var imgs = GetComponentsInChildren<Image>();
-        container = imgs[0];
-        joystick = imgs[1];
-        StartCoroutine(RemoveAfterSeconds(3, InfoWindow));
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            var imgs = GetComponentsInChildren<Image>();
+            container = imgs[0];
+            joystick = imgs[1];
+            StartCoroutine(RemoveAfterSeconds(3, InfoWindow));
+        }
+        else
+        {
+            GameObject joy = GameObject.FindGameObjectWithTag("joy");
+            joy.SetActive(false);
+        }
+        
     }
 
     // Update is called once per frame

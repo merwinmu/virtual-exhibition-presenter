@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static int roomID;
     public static CharacterController control;
+ 
 
     public float speed = 5.0f;
     // Start is called before the first frame update
@@ -26,8 +29,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
         move.y = 0;
         control.Move(move * speed * Time.deltaTime);
-        
-        //Debug.Log(control.transform.position);
+        Debug.Log("This show the vector of move "+move);
+
+        SampleButton.roomEntryPoints[roomID].currentPos = control.transform.position;
+        Debug.Log("This shows the vector of room "+roomID+" and vector from control "+control.transform.position);
+
+       // Debug.Log(SampleButton.roomEntryPoints[roomID].currentPos+" "+ roomID);
     }
 
     public static void Teleport(Vector3 pos)
@@ -37,3 +44,4 @@ public class PlayerMovement : MonoBehaviour
         control.enabled = true;
     }
 }
+
