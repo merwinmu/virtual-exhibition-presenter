@@ -56,6 +56,7 @@ namespace World
             TeleportButtonModel model, string text)
         {
             var go = new GameObject("TeleportButton");
+            go.SetActive(false);
             SteamVRTeleportButton tp = go.AddComponent<SteamVRTeleportButton>();
             tp.transform.SetParent(parent.transform, false);
             tp.transform.localPosition = position;
@@ -71,6 +72,7 @@ namespace World
             TeleportButtonModel model, Sprite image)
         {
             var go = new GameObject("TeleportButton");
+            go.SetActive(false);
             SteamVRTeleportButton tp = go.AddComponent<SteamVRTeleportButton>();
             tp.transform.SetParent(parent.transform, false);
             tp.transform.localPosition = position;
@@ -84,10 +86,8 @@ namespace World
 
         private void Start()
         {
-            if (Application.platform != RuntimePlatform.Android)
-            {
-                Generate();
-            }
+            Generate();
+            
         }
 
         private float GetButtonSize()

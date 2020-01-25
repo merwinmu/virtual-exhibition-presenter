@@ -550,7 +550,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 287209055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcbc3d3473784b8b99000bffe88f158, type: 3}
+  m_Script: {fileID: 11500000, guid: 5622d5c898e7b6947ab4c07897f1a19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 0.5
@@ -4027,11 +4027,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1302637494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3174ef8dc0a64cd89b1c46a05635d72, type: 3}
+  m_Script: {fileID: 11500000, guid: 2baa643316d434349ae2f18f06ffe6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   joystickVisualDistance: 50
-  InfoWindow: {fileID: 1641065550}
+  InfoWindow: {fileID: 0}
 --- !u!1 &1309777823
 GameObject:
   m_ObjectHideFlags: 0
@@ -5767,7 +5767,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: -1.114e-42, y: 6e-45, z: 2.4e-44, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
