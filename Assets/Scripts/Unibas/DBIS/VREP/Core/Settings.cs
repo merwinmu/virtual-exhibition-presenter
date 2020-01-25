@@ -81,6 +81,8 @@ namespace DefaultNamespace
         /// Loads the settings file. In UnityEditor this is at Assets/settings.json, in standalone this should be a sibling of the executable
         /// </summary>
         /// <returns></returns>
+        ///
+
         public static Settings LoadSettings()
         {
             Debug.Log("Settings path: " + getPath());
@@ -111,15 +113,22 @@ namespace DefaultNamespace
 
         public static Settings LoadSettingsFromAndroid()
         {
-            var settings = Resources.Load<TextAsset>("settings");
-            if (settings != null)
-                return JsonUtility.FromJson<Settings>(settings.ToString());
-            else
-            {
-                Debug.Log("Zeile 119 it creates Default");
-                return createDefault();
-            }
-      
+            string dataAsJson ="";
+                    string filePath = Path.Combine (Application.streamingAssetsPath, "settings.json");
+                  
+                      if (Application.platform == RuntimePlatform.Android) {
+                          WWW www = new WWW (filePath);
+                          while (!www.isDone) {
+                          }
+                          if (string.IsNullOrEmpty(www.error)) {
+                              Debug.Log ("File found");
+                              dataAsJson = www.text;
+                              return JsonUtility.FromJson<Settings> (dataAsJson);
+                          } else
+                              Debug.Log ("No such file");
+                      }
+
+                      return createDefault();
         }
         
 

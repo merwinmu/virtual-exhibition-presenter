@@ -84,7 +84,10 @@ namespace World
 
         private void Start()
         {
-            Generate();
+            if (Application.platform != RuntimePlatform.Android)
+            {
+                Generate();
+            }
         }
 
         private float GetButtonSize()
@@ -245,5 +248,7 @@ namespace World
             io.transform.SetParent(canvas.transform, false);
             UIElement = io;
         }
+
+
     }
 }

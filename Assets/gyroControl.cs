@@ -20,8 +20,18 @@ public class gyroControl : MonoBehaviour
         private Vector3 origRot;
     
         public float rotSpeed = 0.5f;
-        public float dir = -1;
+        public static float dir = -1;
+
+
+        public float SpeedH = 5f;
+     public float SpeedV = 5f;
+ 
+     private float yaw = 0f;
+     private float pitch = 0f;
+     private float minPitch = -30f;
+     private float maxPitch = 90f;
         
+     
     
 // Start is called before the first frame update
     void Start()
@@ -29,8 +39,7 @@ public class gyroControl : MonoBehaviour
          origRot = transform.eulerAngles;
          rotX = origRot.x;
          rotY = origRot.y;
-        
-        
+         
         cameraContainer = new GameObject("Camera Container");
         cameraContainer.transform.position = transform.position;
         transform.SetParent(cameraContainer.transform);
@@ -57,22 +66,31 @@ public class gyroControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!InteractionButton)
+
+        if (Application.platform != RuntimePlatform.Android)
         {
-            swiper();
+            mouse();
         }
+
         else
         {
-            if (gyroEnabled)
+            if (!InteractionButton)
             {
-                transform.localRotation = gyro.attitude * rot;
+                swiper();
             }
             else
             {
-                ShowToast("No Gyrosope detected");
-                InteractionButton = false;
+                if (gyroEnabled)
+                {
+                    transform.localRotation = gyro.attitude * rot;
+                }
+                else
+                {
+                    InteractionButton = false;
+                }
             }
         }
+      
     }
 
     void swiper()
@@ -95,9 +113,12 @@ public class gyroControl : MonoBehaviour
                 //swipping
                 float deltaX = initTouch.position.x - touch.position.x;
                 float deltaY = initTouch.position.y - touch.position.y;
-                rotX -= deltaY * Time.deltaTime * rotSpeed * dir;
-                rotY += deltaX * Time.deltaTime * rotSpeed * dir;
-                transform.eulerAngles = new Vector3(rotX,rotY,0f);
+                pitch -= deltaY * Time.deltaTime * rotSpeed * dir;
+                yaw += deltaX * Time.deltaTime * rotSpeed * dir;
+                pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+                transform.eulerAngles = new Vector3(pitch,yaw,0f);
+                
+             
 
             }
             else if(touch.phase == TouchPhase.Ended)
@@ -107,6 +128,18 @@ public class gyroControl : MonoBehaviour
         }
     }
 
+
+    void mouse()
+    {
+        {
+            yaw += Input.GetAxis("Mouse X") * SpeedH;
+            pitch -= Input.GetAxis("Mouse Y") * SpeedV;
+            pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+            transform.eulerAngles = new Vector3(pitch, yaw, 0f);
+        }
+    }
+
+
     public static bool GetInteractionButton()
     {
         return InteractionButton;
@@ -115,22 +148,5 @@ public class gyroControl : MonoBehaviour
     public static void SetInteractionButton(bool flag)
     {
         InteractionButton = flag;
-    }
-    
-    
-    private void ShowToast(string message)
-    {
-        AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        AndroidJavaObject unityActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-
-        if (unityActivity != null)
-        {
-            AndroidJavaClass toastClass = new AndroidJavaClass("android.widget.Toast");
-            unityActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
-            {
-                AndroidJavaObject toastObject = toastClass.CallStatic<AndroidJavaObject>("makeText", unityActivity, message, 0);
-                toastObject.Call("show");
-            }));
-        }
     }
 }

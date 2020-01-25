@@ -1,0 +1,5 @@
+﻿interface OSHandlerInterface
+{
+  void runAndroid();
+}
+

@@ -13,6 +13,7 @@ public class Lobby : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+       
 
         var tp = SteamVRTeleportButton.Create(gameObject, new Vector3(0, 0, 4.5f), Vector3.zero,
             new SteamVRTeleportButton.TeleportButtonModel(0.1f, .02f, 1f, TexturingUtility.LoadMaterialByName("none"),

@@ -32,20 +32,21 @@ namespace Unibas.DBIS.VREP
             {
                 if (string.IsNullOrEmpty(settingsPath))
                 {
-                    Debug.Log("zeile: 35 is NullorEmpty ");
                     Settings = Settings.LoadSettings();
                     
                 }
             }
             if (Application.platform == RuntimePlatform.Android)
             {
-                Settings = Settings.LoadSettingsFromAndroid();
-                Settings.VREMAddress = android_settings.VREMAddress;  // PRETTY LAME I KNOW
-                Settings.exhibitionIds = android_settings.exhibitionIds;  // PRETTY LAME I KNOW
-                Debug.Log("zeile: 38 " + Settings.VREMAddress + "exhi "+ Settings.exhibitionIds[0]);
+                 Settings = Settings.LoadSettingsFromAndroid();
+                if (!mainmenu.exText.Equals("") && !mainmenu.ipText.Equals(""))
+                {
+                    Settings.VREMAddress = mainmenu.ipText;
+                    Settings.exhibitionIds[0] = mainmenu.exText;
+                }
+               
                 
             }
-            Debug.Log("bigshaq: Zeile 48 " + Settings.VREMAddress);
 
 
             SanitizeHost();
@@ -54,7 +55,6 @@ namespace Unibas.DBIS.VREP
         private void SanitizeHost()
 
         {
-            Debug.Log(Settings.VREMAddress + "Zeile 57");
 
             if (!Settings.VREMAddress.EndsWith("/"))
             {
@@ -64,10 +64,8 @@ namespace Unibas.DBIS.VREP
             if (!Settings.VREMAddress.StartsWith("http://"))
             {
                 Settings.VREMAddress = "http://" + Settings.VREMAddress;
-                Debug.Log("zeile 64: "+Settings.VREMAddress);
 
             }
-            Debug.Log("zeile 67: "+Settings.VREMAddress);
         }
 
         private void OnApplicationQuit()
@@ -77,25 +75,7 @@ namespace Unibas.DBIS.VREP
 
         private void Start()
         {
-            if (Settings == null)
-            {
-                Settings = Settings.LoadSettings();
-                Settings.VREMAddress = android_settings.VREMAddress;// PRETTY LAME I KNOW
-                Settings.exhibitionIds = android_settings.exhibitionIds; // PRETTY LAME I KNOW
-                if (Application.platform == RuntimePlatform.Android)
-                {
-                    Settings = Settings.LoadSettingsFromAndroid();
-                     Settings.VREMAddress = android_settings.VREMAddress;// PRETTY LAME I KNOW
-                     Settings.exhibitionIds = android_settings.exhibitionIds; // PRETTY LAME I KNOW
-                    Debug.Log("Zeile 81: Done");
-                }
-                if (Settings == null)
-                {
-                    Settings = Settings.Default();
-                    Debug.Log("Zeile 86: Done");
-
-                }
-            }
+            
             var go = GameObject.FindWithTag("Player");
             if (go != null && Settings.StartInLobby)
             {
