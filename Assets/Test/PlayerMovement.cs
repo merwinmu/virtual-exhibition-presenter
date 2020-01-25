@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static int roomID;
     public static CharacterController control;
     float x;
     float z;

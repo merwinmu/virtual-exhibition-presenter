@@ -8,9 +8,6 @@ public class SampleButton : MonoBehaviour
     public Button buttonComponent;
     public Text nameLabel;
     public Vector3 entry;
-    public int id;
-    public Vector3 lastPosition;
-    public static List<roomTeleportationPos> roomEntryPoints = new List<roomTeleportationPos>();
 
 
     private float OFFSET_X = 12;
@@ -32,10 +29,7 @@ public class SampleButton : MonoBehaviour
     {
         nameLabel = GetComponentInChildren<Text>();
         nameLabel.text = "RoomID: " + id;
-        this.id = id;
         CalculateTeleportPos(pos);
-        roomEntryPoints.Add(new roomTeleportationPos(id,entry));
-        PlayerMovement.roomID = id;
 
     }
 
@@ -45,14 +39,12 @@ public class SampleButton : MonoBehaviour
         entry.x = position.x * OFFSET_X;
         entry.z = CONSTANT_Z;
         entry.y = CONSTANT_Y;
-        lastPosition = entry;
     }
 
     public void HandleClick()
     {
         Debug.Log(entry.ToString());
-        PlayerMovement.Teleport(lastPosition);
-        PlayerMovement.roomID = id;
+        PlayerMovement.Teleport(entry);
     }
     
      

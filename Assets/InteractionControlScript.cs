@@ -69,16 +69,6 @@ public class InteractionControlScript : MonoBehaviour
         
     }
 
-    public void invert()
-    {
-        dir = 1;
-    }
-
-    public void Ninvert()
-    {
-        dir = -1;
-    }
-    
 
     // Update is called once per frame
     void Update()
