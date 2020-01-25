@@ -38,9 +38,7 @@ public class PlayerMovement : MonoBehaviour
         move = transform.right * x + transform.forward * z;
         move.y = 0;
         control.Move(move * speed * Time.deltaTime);
-        Debug.Log("THIS IS LOG "+roomID);
 
-       // SampleButton.roomEntryPoints[roomID].currentPos = control.transform.position;
     }
 
     public static void Teleport(Vector3 pos)
