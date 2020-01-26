@@ -48,7 +48,7 @@ public class ControlButton : MonoBehaviour {
     {
         if (InteractionButton )
         {
-            StartCoroutine(RemoveAfterSeconds(3, InfoWindow));
+            StartCoroutine(RemoveAfterSeconds(1, InfoWindow));
         }
     }
  

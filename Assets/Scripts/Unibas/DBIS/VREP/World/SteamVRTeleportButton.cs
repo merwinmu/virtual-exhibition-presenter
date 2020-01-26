@@ -56,7 +56,11 @@ namespace World
             TeleportButtonModel model, string text)
         {
             var go = new GameObject("TeleportButton");
-            go.SetActive(false);
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxPlayer)
+            {
+                go.SetActive(false);
+            }
+            
             SteamVRTeleportButton tp = go.AddComponent<SteamVRTeleportButton>();
             tp.transform.SetParent(parent.transform, false);
             tp.transform.localPosition = position;
@@ -72,7 +76,11 @@ namespace World
             TeleportButtonModel model, Sprite image)
         {
             var go = new GameObject("TeleportButton");
-            go.SetActive(false);
+            
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.LinuxPlayer)
+            {
+                go.SetActive(false);
+            }
             SteamVRTeleportButton tp = go.AddComponent<SteamVRTeleportButton>();
             tp.transform.SetParent(parent.transform, false);
             tp.transform.localPosition = position;

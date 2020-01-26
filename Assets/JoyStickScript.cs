@@ -25,7 +25,7 @@ public class JoyStickScript : MonoBehaviour,IDragHandler,IPointerUpHandler,IPoin
             var imgs = GetComponentsInChildren<Image>();
             container = imgs[0];
             joystick = imgs[1];
-            StartCoroutine(RemoveAfterSeconds(3, InfoWindow));
+            StartCoroutine(RemoveAfterSeconds(1, InfoWindow));
         }
         else
         {
