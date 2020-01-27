@@ -63,7 +63,7 @@ namespace Unibas.DBIS.VREP
             
             if (Application.platform == RuntimePlatform.OSXPlayer)
             {
-                Settings = Settings.LoadSettingsFromAndroid();
+                Settings = Settings.LoadSettingsFromMac();
                 if (!mainmenu.exText.Equals("") && !mainmenu.ipText.Equals(""))
                 {
                     Settings.VREMAddress = mainmenu.ipText;

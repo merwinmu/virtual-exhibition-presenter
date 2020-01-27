@@ -115,11 +115,19 @@ namespace DefaultNamespace
         public static Settings LoadSettingsFromWindowsAndLinux()
         {
             string dataAsJson = "";
-            string filePath = Application.dataPath + "/";
+            string filePath = Application.streamingAssetsPath;
+            Debug.Log("Hello"+filePath);
             string completePath = Path.Combine(filePath, "settings.json");
+            Debug.Log("Complete Path "+completePath);
             if (File.Exists(completePath))
             {
-                string json = File.ReadAllText(filePath);
+                Debug.Log("File Loaded correctly");
+                //string json = File.ReadAllText(filePath);
+                FileStream bytesjson = File.Open(completePath, FileMode.Open);
+                StreamReader wr = new StreamReader(bytesjson);
+                string json = wr.ReadToEnd();
+                Debug.Log(json);
+                
                 return JsonUtility.FromJson<Settings>(json);
             }
             else
