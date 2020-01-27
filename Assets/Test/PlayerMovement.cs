@@ -27,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
             x = Input.GetAxis("Horizontal") * speed;
             z = Input.GetAxis("Vertical") * speed;
 
+            if (Input.GetKey("escape"))
+            {
+                Application.Quit();
+            }
+
         }
         else
         {
